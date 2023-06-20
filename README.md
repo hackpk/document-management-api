@@ -59,7 +59,6 @@ User Table
 | Column      | Description                                              |
 |-------------|----------------------------------------------------------|
 | user_id     | Unique identifier for each user (Primary Key).            |
-| username    | User's username.                                         |
 | email       | User's email address.                                    |
 | password    | User's password (stored securely, e.g., hashed).          |
 | created_at  | Timestamp indicating when the user was created.           |
