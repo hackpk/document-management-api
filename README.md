@@ -36,10 +36,12 @@ Effective programming language frameworks facilitate the creation of high-qualit
 6. Install dependences: `poetry install`
 7. You can run the server in 3 `different ways. Choose the one you want.
 
-   -  **Option 1 (run with poetry):**
+   - **Option 1 (run with poetry):**
+
       Run the following command `poetry run uvicorn main:app --reload`
 
    - **Option 2 (run using existing scripts):**
+
       _On Windows_
       Run the following command `scripts\run.bat`
 
