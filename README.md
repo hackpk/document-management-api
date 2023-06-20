@@ -36,17 +36,17 @@ Effective programming language frameworks facilitate the creation of high-qualit
 6. Install dependences: `poetry install`
 7. You can run the server in 3 `different ways. Choose the one you want.
 
-    **Option 1 (run with poetry):**
-    Run the following command `poetry run uvicorn main:app --reload`
+   -  **Option 1 (run with poetry):**
+      Run the following command `poetry run uvicorn main:app --reload`
 
-    **Option 2 (run using existing scripts):**
-    **On Windows**
-     Run the following command `scripts\run.bat`
+   - **Option 2 (run using existing scripts):**
+      _On Windows_
+      Run the following command `scripts\run.bat`
 
-    **On Linux**
+      _On Linux_
     Make sure to give the scripts executable permissions if running on a Unix-like system. You can do this by running `chmod +x scripts/run.sh` in the terminal. Then run the following command `scripts/run.sh`
 
-    **Option 3 (run with Docker):**
+    - **Option 3 (run with Docker):**
     TODO
 
 8. Access swagger docs at: `http:127.0.0.1:8080/docs`
