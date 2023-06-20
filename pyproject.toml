@@ -13,6 +13,8 @@ uvicorn = {extras = ["standard"], version = "^0.22.0"}
 sqlalchemy = "^2.0.16"
 python-dotenv = "^1.0.0"
 validators = "^0.20.0"
+pyjwt = "^2.7.0"
+passlib = "^1.7.4"
 
 
 [build-system]
