@@ -29,7 +29,6 @@ class UserCreate(UserBase):
     """
     password: str
 
-
 class UserUpdate(UserBase):
     """
     Model for updating an existing user.
@@ -53,6 +52,7 @@ class User(UserBase):
     documents: list[Document] = []
     created_at: datetime
     updated_at: datetime
+    token: str
 
     class Config:
         """
