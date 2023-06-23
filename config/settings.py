@@ -17,10 +17,10 @@ class Settings(BaseSettings):
     """
 
     env_name: str = "Local"
-    secret_key: str = "#%$&@^^@yyetet%$%#$"
+    jwt_secret_key: str = "#%$&@^^@yyetet%$%#$"
     jwt_algorithm: str = ""
     base_url: str = "http://localhost:8000"
-    db_url: str = "sqlite:///./doc_api.db"
+    db_url: str = "sqlite:///./db.sqlite"
 
     class Config:
         """
