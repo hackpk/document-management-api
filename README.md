@@ -42,7 +42,10 @@ How can this Document Service be used with AI?
     Make sure to give the scripts executable permissions if running on a Unix-like system. You can do this by running `chmod +x scripts/run.sh` in the terminal. Then run the following command `scripts/run.sh`
 
    - **Option 3 (run with Docker):**
-    TODO
+
+    Run: `docker-compose build`
+    Then run the following command: `docker-compose up`
+
 8. Updating migrations
     **Updating Migrations**
     Run the following:
