@@ -31,6 +31,12 @@ jobs:
           mkdir build
           zip -r build/app.zip . -x "*.git*" -x "*build*" -x "*.venv*"
 
+      - name: Publish artifact
+        uses: actions/upload-artifact@v2
+        with:
+            name: build/app
+            path: build/app.zip
+
   CD:
     runs-on: ubuntu-latest
     needs: [CI]
