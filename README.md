@@ -12,11 +12,6 @@ How can this Document Service be used with AI?
 - SQLAlchemy
 - Uvicorn
 
-- Speed: FastAPI is one of the fastest Python web frameworks. In fact, its speed is at par with Node.js and Go. [Check these FastAPI - performance tests](https://www.techempower.com/benchmarks).
-- The FastAPI [documentation](https://fastapi.tiangolo.com/) is detailed and easy-to-use.
-- Type hint your code and get free data validation and conversion.
-- Create plugins easily using dependency injection.
-
 ## Local Development
 
 1. Clone the repository and `cd` into the repository directory.
