@@ -12,8 +12,6 @@ How can this Document Service be used with AI?
 - SQLAlchemy
 - Uvicorn
 
-Effective programming language frameworks facilitate the creation of high-quality products in a shorter span of time. Furthermore, exceptional frameworks enhance the overall development process, making it a pleasurable experience. One such framework is FastAPI, a Python-based web framework renowned for its robustness and user-friendliness. The subsequent attributes exemplify the reasons why the FastAPI framework is highly recommended for experimentation:
-
 - Speed: FastAPI is one of the fastest Python web frameworks. In fact, its speed is at par with Node.js and Go. [Check these FastAPI - performance tests](https://www.techempower.com/benchmarks).
 - The FastAPI [documentation](https://fastapi.tiangolo.com/) is detailed and easy-to-use.
 - Type hint your code and get free data validation and conversion.
@@ -48,10 +46,17 @@ Effective programming language frameworks facilitate the creation of high-qualit
       _On Linux_
     Make sure to give the scripts executable permissions if running on a Unix-like system. You can do this by running `chmod +x scripts/run.sh` in the terminal. Then run the following command `scripts/run.sh`
 
-    - **Option 3 (run with Docker):**
+   - **Option 3 (run with Docker):**
     TODO
+8. Updating migrations
+    **Updating Migrations**
+    Run the following:
 
-8. Access swagger docs at: `http:127.0.0.1:8080/docs`
+    `alembic revision --autogenerate -m "Added user and document table"`
+
+    `alembic upgrade head`
+
+9. Access swagger docs at: `http:127.0.0.1:8080/docs`
 
 ## Schema
 
