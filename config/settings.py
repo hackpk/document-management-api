@@ -21,6 +21,8 @@ class Settings(BaseSettings):
     jwt_algorithm: str = ""
     base_url: str = "http://localhost:8000"
     db_url: str = "sqlite:///./db.sqlite"
+    aws_access_key_id: str = ''
+    aws_secret_access_key: str = ''
 
     class Config:
         """
