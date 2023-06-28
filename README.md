@@ -1,3 +1,5 @@
+[![Document API CI/CD](https://github.com/pmutua/fastapi-project/actions/workflows/cicd.yml/badge.svg)](https://github.com/pmutua/fastapi-project/actions/workflows/cicd.yml)
+
 # Document API
 
 ## Technologies
