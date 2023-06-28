@@ -11,6 +11,7 @@ from fastapi import (
 )
 from sqlalchemy.orm import Session
 import boto3
+from botocore.config import Config
 from config.settings import get_settings
 from repositories.document_repository import DocumentRepository
 from schemas.document import Document, DocumentCreate, DocumentUpdate
@@ -18,9 +19,16 @@ from schemas.document import Document, DocumentCreate, DocumentUpdate
 TIME_STR = time.strftime("%Y-%m-%d-%H:%M:%S")
 KB = 1024
 MB = 1024*KB
-AWS_BUCKET = 'my bucket'
-s3 = boto3.client('s3', aws_access_key_id=get_settings().aws_access_key_id, aws_secret_access_key=get_settings().aws_secret_access_key)
-bucket = s3.Bucket(AWS_BUCKET)
+settings = get_settings()
+
+config = Config(
+    region_name=settings.aws_region,
+    aws_access_key_id=settings.aws_access_key_id,
+    aws_secret_access_key=settings.aws_secret_access_key
+)
+
+s3 = boto3.client('s3', config=config)
+bucket = s3.Bucket(settings.aws_bucket_name)
 
 SUPPORTED_FILE_TYPES = {
     'application/pdf': 'pdf',
