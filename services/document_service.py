@@ -1,9 +1,32 @@
-from typing import List, Optional
+import time
+import json
+from uuid import uuid4
+import magic
+from typing import List, Optional, Union
 from datetime import datetime
+from fastapi import (
+    status,
+    HTTPException,
+    UploadFile
+)
 from sqlalchemy.orm import Session
+import boto3
+from config.settings import get_settings
 from repositories.document_repository import DocumentRepository
 from schemas.document import Document, DocumentCreate, DocumentUpdate
 
+TIME_STR = time.strftime("%Y-%m-%d-%H:%M:%S")
+KB = 1024
+MB = 1024*KB
+AWS_BUCKET = 'my bucket'
+s3 = boto3.client('s3', aws_access_key_id=get_settings().aws_access_key_id, aws_secret_access_key=get_settings().aws_secret_access_key)
+bucket = s3.Bucket(AWS_BUCKET)
+
+SUPPORTED_FILE_TYPES = {
+    'application/pdf': 'pdf',
+    'image/png': 'png',
+    'image/jpeg': 'jpeg'
+}
 
 class DocumentService:
     """
@@ -96,3 +119,43 @@ class DocumentService:
         if document:
             return self.repository.delete_document(document)
         return False
+    
+    def s3_upload(self, contents:bytes, key: str):
+        # logger.info("Uploading {key} to s3") 
+        bucket.put_object(key=key, Body=contents)
+        
+        
+    def validate_file(file):
+        if not file:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail='No file found!!'
+            )
+
+        contents = file.read()
+        file_size = len(contents)
+        if not 0 < file_size <= 1 * MB:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail='Supported file size is 0 - 1 MB'
+            )
+
+        return contents
+
+
+    def validate_file_type(contents):
+        file_type = magic.from_buffer(buffer=contents, mime=True)
+        if file_type not in SUPPORTED_FILE_TYPES:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f'Unsupported file type: {file_type}. Supported file types are {SUPPORTED_FILE_TYPES}'
+            )
+
+        return file_type
+
+
+    def upload_document(self, file: Union[UploadFile, None] = None) -> None:
+        contents = self.validate_file(file)
+        file_type = self.validate_file_type(contents)
+        key = f'{uuid4()}.{SUPPORTED_FILE_TYPES[file_type]}'
+        self.s3_upload(contents=contents, key=key)

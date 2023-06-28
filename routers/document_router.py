@@ -1,5 +1,10 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    UploadFile
+)
 from sqlalchemy.orm import Session
 # from models.document import Document
 from services.document_service import DocumentService
@@ -7,6 +12,11 @@ from schemas.document import Document, DocumentCreate, DocumentUpdate
 from config.database import get_db
 
 router = APIRouter()
+
+@router.post("/upload")
+def upload_document(file: UploadFile, db: Session = Depends(get_db)):
+    document_service = DocumentService(db)
+    return document_service.upload_document(file)
 
 
 @router.get("/documents/{document_id}", response_model=Document)

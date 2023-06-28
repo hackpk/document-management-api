@@ -1,8 +1,5 @@
 # Document API
 
-How do we utilize ai on already existing documents?
-How can this Document Service be used with AI?
-
 ## Technologies
 
 - Python 3.11+
@@ -11,6 +8,7 @@ How can this Document Service be used with AI?
 - PostgreSQL
 - SQLAlchemy
 - Uvicorn
+- AWS
 
 ## Local Development
 
